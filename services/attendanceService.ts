@@ -11,17 +11,32 @@ export interface ClockOutResponse {
   message: string;
 }
 
+// Helper to normalize MongoDB data (convert _id to id)
+const normalizeAttendance = (data: any): AttendanceRecord => {
+  if (data._id && !data.id) {
+    data.id = data._id.toString();
+  }
+  if (data.employeeId && typeof data.employeeId === 'object') {
+    data.employeeId = data.employeeId._id || data.employeeId.id;
+  }
+  // Convert date to string format if it's a Date object
+  if (data.date && typeof data.date === 'object') {
+    data.date = new Date(data.date).toISOString().split('T')[0];
+  }
+  return data;
+};
+
 export const attendanceService = {
   // Get all attendance records
   async getAllAttendance(): Promise<AttendanceRecord[]> {
     const response = await api.get('/attendance');
-    return response.data;
+    return response.data.map(normalizeAttendance);
   },
 
   // Get attendance by employee ID
   async getAttendanceByEmployee(employeeId: string): Promise<AttendanceRecord[]> {
     const response = await api.get(`/attendance/employee/${employeeId}`);
-    return response.data;
+    return response.data.map(normalizeAttendance);
   },
 
   // Get attendance for date range
@@ -29,31 +44,37 @@ export const attendanceService = {
     const response = await api.get('/attendance/range', {
       params: { startDate, endDate }
     });
-    return response.data;
+    return response.data.map(normalizeAttendance);
   },
 
   // Clock in
   async clockIn(): Promise<ClockInResponse> {
     const response = await api.post('/attendance/clock-in');
-    return response.data;
+    return {
+      ...response.data,
+      record: normalizeAttendance(response.data.record)
+    };
   },
 
   // Clock out
   async clockOut(): Promise<ClockOutResponse> {
     const response = await api.post('/attendance/clock-out');
-    return response.data;
+    return {
+      ...response.data,
+      record: normalizeAttendance(response.data.record)
+    };
   },
 
   // Create attendance record (admin)
   async createAttendanceRecord(record: Omit<AttendanceRecord, 'id'>): Promise<AttendanceRecord> {
     const response = await api.post('/attendance', record);
-    return response.data;
+    return normalizeAttendance(response.data);
   },
 
   // Update attendance record
   async updateAttendanceRecord(id: string, record: Partial<AttendanceRecord>): Promise<AttendanceRecord> {
     const response = await api.put(`/attendance/${id}`, record);
-    return response.data;
+    return normalizeAttendance(response.data);
   },
 
   // Delete attendance record
@@ -65,6 +86,6 @@ export const attendanceService = {
   // Get today's attendance for current user
   async getTodayAttendance(): Promise<AttendanceRecord | null> {
     const response = await api.get('/attendance/today');
-    return response.data;
+    return response.data ? normalizeAttendance(response.data) : null;
   },
 };
