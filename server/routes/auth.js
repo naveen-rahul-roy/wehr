@@ -75,6 +75,62 @@ router.post('/login', async (req, res) => {
       await user.save();
     }
 
+    // If MFA is not setup, log user in directly
+    if (!user.isMfaSetup) {
+      console.log('✅ MFA not setup, logging in directly:', user.email);
+      
+      // AUTO-ATTENDANCE: Create attendance record for today if not exists
+      try {
+        const now = new Date();
+        const todayString = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+        const employee = await Employee.findOne({ email: user.email });
+        
+        if (employee) {
+          const existingAttendance = await Attendance.findOne({
+            employeeId: employee._id,
+            date: todayString
+          });
+
+          if (!existingAttendance) {
+            const clockInTime = new Date().toLocaleTimeString('en-US', { 
+              hour: '2-digit', 
+              minute: '2-digit', 
+              hour12: true 
+            });
+
+            await Attendance.create({
+              employeeId: employee._id,
+              date: todayString,
+              status: 'Present',
+              clockIn: clockInTime,
+              clockInTimestamp: now
+            });
+
+            console.log(`✅ Auto-attendance created for ${user.name} at ${clockInTime}`);
+          }
+        }
+      } catch (attendanceError) {
+        console.error('❌ Auto-attendance error:', attendanceError);
+      }
+
+      // Generate JWT token
+      const token = generateToken(user._id);
+
+      return res.json({
+        token,
+        user: {
+          id: user._id,
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          avatarUrl: user.avatarUrl,
+          isMfaSetup: user.isMfaSetup || false,
+          mfaEnabled: user.isMfaSetup || false
+        }
+      });
+    }
+
     // Return user data without token (MFA required)
     res.json({
       user: {

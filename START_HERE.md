@@ -4,21 +4,25 @@
 
 If you're a new company wanting to deploy this HR Management System, follow these steps:
 
-### 1️⃣ Read the Overview
-Start with **[DEPLOYMENT_SUMMARY_FOR_NEW_COMPANY.md](DEPLOYMENT_SUMMARY_FOR_NEW_COMPANY.md)** to understand what you need.
+### 1️⃣ Quick Start
+Read **[SYSTEM_GUIDE.md](SYSTEM_GUIDE.md)** for quick reference and common tasks.
 
 ### 2️⃣ Follow the Deployment Guide
 Read **[DEPLOYMENT_GUIDE_FOR_NEW_COMPANY.md](DEPLOYMENT_GUIDE_FOR_NEW_COMPANY.md)** for complete step-by-step instructions.
 
-### 3️⃣ Use the Checklist
-Use **[CONFIGURATION_CHECKLIST.md](CONFIGURATION_CHECKLIST.md)** to track your progress.
-
-### 4️⃣ Troubleshoot if Needed
+### 3️⃣ Troubleshoot if Needed
 If you encounter issues, check **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**.
 
 ---
 
 ## 🛠️ For Developers
+
+### Quick Reference
+See **[SYSTEM_GUIDE.md](SYSTEM_GUIDE.md)** for:
+- Login credentials
+- Quick start commands
+- Maintenance scripts
+- Troubleshooting tips
 
 ### Local Development Setup
 See **[README.md](README.md)** for:
@@ -28,11 +32,15 @@ See **[README.md](README.md)** for:
 - Project structure
 - Tech stack details
 
-### Documentation
+### Technical Documentation
 - **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - System architecture
 - **[docs/API_REFERENCE.md](docs/API_REFERENCE.md)** - API documentation
 - **[docs/DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md)** - Database structure
 - **[docs/DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md)** - General deployment info
+
+### Feature Guides
+- **[MFA_ENABLED_GUIDE.md](MFA_ENABLED_GUIDE.md)** - MFA setup and usage
+- **[NOTIFICATION_SYSTEM_GUIDE.md](NOTIFICATION_SYSTEM_GUIDE.md)** - Notification system
 
 ---
 
@@ -89,15 +97,18 @@ A complete HR Management System with:
 
 ## 📞 Need Help?
 
-1. **Deployment Issues**: Check [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-2. **Configuration Questions**: See [DEPLOYMENT_GUIDE_FOR_NEW_COMPANY.md](DEPLOYMENT_GUIDE_FOR_NEW_COMPANY.md)
-3. **Technical Details**: Read [README.md](README.md)
-4. **API Questions**: See [docs/API_REFERENCE.md](docs/API_REFERENCE.md)
+1. **Quick Reference**: Check [SYSTEM_GUIDE.md](SYSTEM_GUIDE.md)
+2. **Deployment Issues**: Check [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+3. **Configuration Questions**: See [DEPLOYMENT_GUIDE_FOR_NEW_COMPANY.md](DEPLOYMENT_GUIDE_FOR_NEW_COMPANY.md)
+4. **Technical Details**: Read [README.md](README.md)
+5. **API Questions**: See [docs/API_REFERENCE.md](docs/API_REFERENCE.md)
 
 ---
 
-## 🎉 Ready to Deploy?
+## 🎉 Ready to Use?
 
-**Start with: [DEPLOYMENT_GUIDE_FOR_NEW_COMPANY.md](DEPLOYMENT_GUIDE_FOR_NEW_COMPANY.md)**
+**Quick Start**: [SYSTEM_GUIDE.md](SYSTEM_GUIDE.md)
+
+**Deploy**: [DEPLOYMENT_GUIDE_FOR_NEW_COMPANY.md](DEPLOYMENT_GUIDE_FOR_NEW_COMPANY.md)
 
 Good luck! 🚀

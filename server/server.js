@@ -34,6 +34,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3001',
   'http://localhost:3000',
+  'https://hr-sigma-two.vercel.app',
   'https://hrapp.onrender.com',
   'https://hr-management-frontend.onrender.com'
 ].filter(Boolean); // Remove undefined values
@@ -47,6 +48,7 @@ app.use(cors({
       callback(null, true);
     } else {
       console.log('❌ CORS blocked origin:', origin);
+      console.log('✅ Allowed origins:', allowedOrigins);
       callback(new Error('Not allowed by CORS'));
     }
   },
