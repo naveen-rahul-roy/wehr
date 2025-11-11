@@ -1,26 +1,25 @@
 services:
-  # Backend API Service
-  # IMPORTANT: Update the values below with your actual deployment details
   - type: web
-    name: your-company-hr-backend  # Change this to your preferred service name
+    name: hr-app-backend
     env: node
-    region: oregon  # Choose your preferred region (oregon, frankfurt, singapore, etc.)
+    region: oregon
     plan: free
-    buildCommand: cd server && npm install
-    startCommand: cd server && npm start
+    rootDir: ./server
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 5000
       - key: FRONTEND_URL
-        value: https://your-frontend-app.vercel.app  # Update with your Vercel URL
+        value: https://your-frontend-url.vercel.app  # We'll update this after frontend deploy
       - key: MONGODB_URI
-        value: mongodb+srv://your_username:your_password@your_cluster.mongodb.net/your_database?retryWrites=true&w=majority  # Update with your MongoDB connection string
+        value: # You'll add your MongoDB URI here
       - key: JWT_SECRET
-        generateValue: true  # Render will auto-generate a secure secret
+        generateValue: true
       - key: JWT_EXPIRE
         value: 30d
       - key: MFA_ISSUER
-        value: Your Company HR System  # Update with your company name
+        value: HR Management System
     healthCheckPath: /api/health
