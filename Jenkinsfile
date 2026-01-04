@@ -6,11 +6,6 @@ pipeline{
     }
     
     stages{
-        stage("git checkout") {
-         steps {
-             git url: "https://github.com/naveen-rahul-roy/wehr", branch: "main"
-         }
-        }
         stage("Installation"){
             steps{
                 sh 'npm install'
@@ -34,6 +29,7 @@ pipeline{
     }
 
 }
+
 
 
 
