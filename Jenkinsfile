@@ -1,35 +1,29 @@
-pipeline{
+pipeline {
     agent any 
-
+    
     tools {
-        nodejs 'nodejs-lts'
+        nodejs "NodeJs-lts"
     }
     
     stages{
-        stage("Installation"){
-            steps{
+        stage("Installing Dependencies") {
+            steps {
                 sh 'npm install'
             }
         }
-        stage("testing the application"){
-            steps{
-                sh 'npm test'
-            }
-        }
-        stage("Building"){
-            steps{
-                sh 'npm run build'
+        stage("Testing Dependencies") {
+            steps {
+                sh "npm test"
             }
         }
     }
-    
-    post{
-       success {echo "Build Succesfull"}
-       failure {echo "Build failure"}
+    post {
+        success {
+            echo "Build Succesfull..!"
+        }
+        failure {
+            echo "Build Failed..!"
+        }
     }
-
+     
 }
-
-
-
-
