@@ -1,9 +1,9 @@
 pipeline {
     agent any 
     
-tools {
-        nodejs "NodeJs-lts"
-    }
+//tools {
+       // nodejs "NodeJs-lts"
+    //}
     
     stages{
         stage("Installing Dependencies") {
@@ -27,6 +27,7 @@ tools {
     }
      
 }
+
 
 
 
