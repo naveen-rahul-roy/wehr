@@ -3,7 +3,7 @@ pipeline {
     
 tools {
         nodejs "NodeJs-lts"
-    //}
+    }
     
     stages{
         stage("Installing Dependencies") {
@@ -27,6 +27,7 @@ tools {
     }
      
 }
+
 
 
 
