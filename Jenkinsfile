@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     
-tools {
+//tools {
         nodejs "NodeJs-lts"
     }
     
@@ -27,6 +27,7 @@ tools {
     }
      
 }
+
 
 
 
